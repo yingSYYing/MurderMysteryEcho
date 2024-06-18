@@ -1,2 +1,8 @@
 # MurderMysteryEcho
-A prototype of a Murder Mystery Game (in the works), with interactive choices and story
+Welcome to my murder mystery, interactive story game, Echo: A Voice Unheard! 
+(Disclaimer: This is a work in progress, certain errors will be fixed soon and visuals will be improved)
+
+How to play:
+1. Progress through the story either by the left mouse button or the Space-bar. 
+2. Some actions are needed to unlock other areas
+3. Enjoy the story, the characters and finding out the truth!
