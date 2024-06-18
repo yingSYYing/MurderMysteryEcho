@@ -193,7 +193,7 @@ def mainmenu():
         anchor="nw"
     )
 
-    # Create the author text
+   
     maintext3 = canvas.create_text(
         mainx1 + mainx1 / 4,  
         mainy1 + 2 * MAIN_INDENT + 150, 
@@ -5627,18 +5627,9 @@ def ending():
     )
 
 def main():
-    # global Jasper2, Annabeth2, Evie2, caraDavid2, caraDavid3, Group2
-    # Jasper2 = True
-    # Annabeth2 = True
-    # caraDavid2 = True
-    # caraDavid3 = True
-    # Evie2 = True
-    # Group2 = True
+    
     mainmenu()
-    # Body_1()
-    # Jasper_post()
-    # View_Info()
-    # ending()
+ 
 
 
 
