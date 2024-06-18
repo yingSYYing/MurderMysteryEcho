@@ -2,6 +2,7 @@ import tkinter as tk
 import time
 
 #MURDER MYSTERY 
+#ECHO: A VOICE UNHEARD
 
 CANVAS_WIDTH = 1080
 CANVAS_HEIGHT = 720
@@ -97,6 +98,8 @@ custom_colors = {
     "light_pink": "#FFB6C1",
     "light_gray": "#D3D3D3",
     "light_red": "#f0847d",
+    "parchment" : "#dabb94",
+    "parchment2": "#a37438",
 }
 
 scene_colors = {
@@ -105,6 +108,8 @@ scene_colors = {
     "scene1_stove_on": custom_colors["light_green"],  # Example color for scene 1 after "stove on" dialogue
     "scene3": custom_colors["light_pink"],
     "retry": custom_colors["light_red"],
+    "Main" : custom_colors["parchment"],
+    "Ending": custom_colors["parchment2"],
 }
 
 def set_background_color(scene, color=None):
@@ -113,8 +118,6 @@ def set_background_color(scene, color=None):
     else:
         canvas.config(bg=scene_colors.get(scene, "white"))
 
-# def set_background_color(scene, color):
-#     canvas.configure(bg=color)
 
 def box(x1, y1, x2, y2, fill="white"):
     return canvas.create_rectangle(x1, y1, x2, y2, fill=fill, outline="black")
@@ -141,15 +144,14 @@ def transition(x, y, x2, y2, action, item2):
     def on_click(event):
         click_x, click_y = event.x, event.y
         if x <= click_x <= x2 and y <= click_y <= y2:
-            # canvas.itemconfig(item, fill="light grey")
+            
             canvas.itemconfig(item2, fill="light grey")
             canvas.update()
 
-            # Delay for a short period to indicate click feedback
+            
             time.sleep(0.2)
 
-            # Reset button color to its original color
-            # canvas.itemconfig(item, fill="black")
+            
             canvas.itemconfig(item2, fill="white")
             canvas.update()
 
@@ -159,7 +161,7 @@ def transition(x, y, x2, y2, action, item2):
     return on_click
 
 def mainmenu():
-    set_background_color("main_menu")
+    set_background_color("Main")
 
     global mainx1, mainx2, mainy1, mainy2, StartBoxX, StartBoxY, StartBoxX2, StartBoxY2
 
@@ -177,7 +179,7 @@ def mainmenu():
 
     maintext = canvas.create_text(
         mainx1 + mainx1 / 4, 
-        mainy1 + MAIN_INDENT / 2, 
+        mainy1 + MAIN_INDENT / 2 +20, 
         text="WELCOME TO:", 
         font=("Bookman Old Style", 28, "italic"), 
         width=840, 
@@ -188,29 +190,25 @@ def mainmenu():
         mainx1 + mainx1 / 4, 
         mainy1 + MAIN_INDENT + 80, 
         text="ECHO: A VOICE UNHEARD", 
-        font=("Algerian", 50, "bold underline"), 
+        font=("Algerian", 52, "bold underline"), 
         fill="darkred", 
         width=840, 
         anchor="nw"
     )
 
-   
-    maintext3 = canvas.create_text(
-        mainx1 + mainx1 / 4,  
-        mainy1 + 2 * MAIN_INDENT + 150, 
-        text="By Siew Yue Ying for CIP2024", 
-        font=("Bookman Old Style", 24, "bold italic"), 
-        width=840, 
-        anchor="nw"
-    )
-    maintext = text(mainx1 + mainx1/4, mainy1 + MAIN_INDENT/2, "CODE IN PLACE FINAL PROJECT", font, 840)
-    maintext = text(mainx1 + mainx1/4, mainy1 + MAIN_INDENT + font, "BY SIEW YUE YING", font, 840)
-    startbox = box(StartBoxX, StartBoxY, StartBoxX2, StartBoxY2)
-    starttext = text((mainx2 - mainx1)/2.5 + mainx1 -17, (mainy2 - mainy1)/2 + 1.8*mainy1, "CLICK TO START", 20, 800)
-    
 
-    # button = tk.Button(root, text="Click To Start", command=next_scene, font=(textf, 20))
-    # button_window = canvas.create_window(CANVAS_WIDTH / 2, mainy2 - MAIN_INDENT / 2, window=button)
+    maintext3 = canvas.create_text(
+        CANVAS_WIDTH-(mainx1 + mainx1 / 4),  
+        mainy1 + 2 * MAIN_INDENT + 180, 
+        text="By Siew Yue Ying for CIP2024", 
+        font=("Bookman Old Style", 12, "bold italic"), 
+        width=840, 
+        anchor="ne"
+    )
+
+    startbox = box(StartBoxX, StartBoxY - 10, StartBoxX2, StartBoxY2)
+    starttext = text((mainx2 - mainx1)/2.5 + mainx1 -17, (mainy2 - mainy1)/2 + 1.8*mainy1 - 8, "CLICK TO START", 20, 800)
+    
  
     canvas.update()
     canvas.bind("<Button-1>", transition(StartBoxX, StartBoxY, StartBoxX2, StartBoxY2, FirstScene, startbox))
@@ -260,14 +258,12 @@ def transition2(event, action):
     canvas.itemconfig(item_id, fill="light grey")
     canvas.update()
 
-    # Delay for a short period to indicate click feedback
     time.sleep(0.2)
 
-    # Reset button color to its original color
     canvas.itemconfig(item_id, fill="white")
     canvas.update()
 
-    # Perform the action associated with the choice
+ 
     canvas.delete("all")
     time.sleep(0.4)
     action()
@@ -5433,12 +5429,7 @@ def not_right():
     coords8 = [norm_indent, norm_indent, 150 + norm_indent, 50 + norm_indent]
         
     choices = [
-            # (coords1, text1, next_action),
-            # (coords2, text2, next_action2),
-            # (coords3, text3, next_action3),
-            # (coords4, text4, next_action4),
-            # (coords5, text5, next_action5),
-            # (coords6, text6, next_action6),
+
             (coords7, text7, next_action7),
             (coords8, text8, next_action8)
     ]
@@ -5573,12 +5564,7 @@ def not_right2():
     coords8 = [norm_indent, norm_indent, 150 + norm_indent, 50 + norm_indent]
         
     choices = [
-            # (coords1, text1, next_action),
-            # (coords2, text2, next_action2),
-            # (coords3, text3, next_action3),
-            # (coords4, text4, next_action4),
-            # (coords5, text5, next_action5),
-            # (coords6, text6, next_action6),
+        
             (coords7, text7, next_action7),
             (coords8, text8, next_action8)
     ]
@@ -5589,16 +5575,12 @@ def not_right2():
 
 def ending():
     canvas.delete("all")
-    set_background_color("main_menu")
+    set_background_color("Ending")
 
-    mainbox = box(mainx1, mainy1, mainx2, mainy2)
+    mainbox = canvas.create_rectangle(mainx1, mainy1, mainx2, mainy2, outline = "black", fill = "#efe6d6")
+    # mainbox = box(mainx1, mainy1, mainx2, mainy2)
     font = 36
 
-    # maintext = canvas.create_text(mainx1 + mainx1/4, mainy1 + MAIN_INDENT/2, text = "THANK YOU FOR PLAYING:", font=("Bookman Old Style", 32, "bold"), width=840, anchor = "nw")
-    # maintext2 = canvas.create_text(mainx1 + mainx1/4, mainy1 + MAIN_INDENT + font, text = "ECHO: A VOICE UNHEARD", font=("Bookman Old Style", 32, "bold"), width=840, anchor = "nw")
-    # maintext3 = canvas.create_text(mainx1 + mainx1/4,  mainy1 + 2*MAIN_INDENT + 2*font, text = "By Siew Yue Ying for CIP2024", font=("Bookman Old Style", 32, "bold"), width=840, anchor = "nw")
-    # startbox = box(StartBoxX, StartBoxY, StartBoxX2, StartBoxY2)
-    # starttext = text((mainx2 - mainx1)/2.5 + mainx1 -17, (mainy2 - mainy1)/2 + 1.8*mainy1, "CLICK TO START", 20, 800)
     maintext = canvas.create_text(
         mainx1 + mainx1 / 4, 
         mainy1 + MAIN_INDENT / 2, 
@@ -5628,12 +5610,8 @@ def ending():
     )
 
 def main():
-    
+
     mainmenu()
- 
-
-
-
     root.mainloop()
 
 if __name__ == '__main__':
