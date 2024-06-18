@@ -6,6 +6,7 @@ import time
 CANVAS_WIDTH = 1080
 CANVAS_HEIGHT = 720
 root = tk.Tk()
+root.title("ECHO: A VOICE UNHEARD")
 canvas = tk.Canvas(width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg='white')
 canvas.pack()
 
