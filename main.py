@@ -2,7 +2,6 @@ import tkinter as tk
 import time
 
 #MURDER MYSTERY 
-#ECHO: A VOICE UNHEARD
 
 CANVAS_WIDTH = 1080
 CANVAS_HEIGHT = 720
@@ -118,6 +117,8 @@ def set_background_color(scene, color=None):
     else:
         canvas.config(bg=scene_colors.get(scene, "white"))
 
+# def set_background_color(scene, color):
+#     canvas.configure(bg=color)
 
 def box(x1, y1, x2, y2, fill="white"):
     return canvas.create_rectangle(x1, y1, x2, y2, fill=fill, outline="black")
@@ -151,7 +152,7 @@ def transition(x, y, x2, y2, action, item2):
             
             time.sleep(0.2)
 
-            
+ 
             canvas.itemconfig(item2, fill="white")
             canvas.update()
 
@@ -196,7 +197,7 @@ def mainmenu():
         anchor="nw"
     )
 
-
+    # Create the author text
     maintext3 = canvas.create_text(
         CANVAS_WIDTH-(mainx1 + mainx1 / 4),  
         mainy1 + 2 * MAIN_INDENT + 180, 
@@ -205,10 +206,12 @@ def mainmenu():
         width=840, 
         anchor="ne"
     )
-
+    # maintext = text(mainx1 + mainx1/4, mainy1 + MAIN_INDENT/2, "CODE IN PLACE FINAL PROJECT", font, 840)
+    # maintext = text(mainx1 + mainx1/4, mainy1 + MAIN_INDENT + font, "BY SIEW YUE YING", font, 840)
     startbox = box(StartBoxX, StartBoxY - 10, StartBoxX2, StartBoxY2)
     starttext = text((mainx2 - mainx1)/2.5 + mainx1 -17, (mainy2 - mainy1)/2 + 1.8*mainy1 - 8, "CLICK TO START", 20, 800)
     
+
  
     canvas.update()
     canvas.bind("<Button-1>", transition(StartBoxX, StartBoxY, StartBoxX2, StartBoxY2, FirstScene, startbox))
@@ -243,7 +246,7 @@ def display_dialogue(dialogues, next_scene_callback): #pure dialogue only
                 print(continueY)
                 print(continueX2)
                 print(continueY2)
-                # canvas.tag_bind("continue_button", "<Button-1>", lambda event: next_scene_callback())
+                
                 canvas.bind("<Button-1>", transition(continueX, continueY, continueX2, continueY2, next_scene_callback, continue_box))
 
     next_dialogue()
@@ -258,12 +261,13 @@ def transition2(event, action):
     canvas.itemconfig(item_id, fill="light grey")
     canvas.update()
 
+
     time.sleep(0.2)
 
     canvas.itemconfig(item_id, fill="white")
     canvas.update()
 
- 
+
     canvas.delete("all")
     time.sleep(0.4)
     action()
@@ -4035,8 +4039,8 @@ def View_Info():
     coords7 = [norm_indent + 150+choice_box_width + 3*45, 20 + choice_box_height + 60, norm_indent + 150+2*choice_box_width + 3*45,20 + 2*choice_box_height + 60]  
     coords8 = [norm_indent, norm_indent, 150 + norm_indent, 50 + norm_indent]
     coords9 = [norm_indent, 20 + 2*choice_box_height + 2*60, 150 + norm_indent, 20 + 3*choice_box_height + 2*60]
-    coords10 = [norm_indent, (CANVAS_HEIGHT-choice_box_height)/2, norm_indent+choice_box_width, (CANVAS_HEIGHT-choice_box_height)/2 + choice_box_height]
-
+    # coords10 = [norm_indent, (CANVAS_HEIGHT-choice_box_height)/2, norm_indent+choice_box_width, (CANVAS_HEIGHT-choice_box_height)/2 + choice_box_height]
+    coords10 = [norm_indent, 20 + choice_box_height + 60, norm_indent+choice_box_width, 20 + 2*choice_box_height + 60]
     if(Jasper2 and Annabeth2 and Group2 and caraDavid2 and Evie2 and not(Conclusion5)):
         choices = [
             (coords1, text1, next_action),
@@ -5429,7 +5433,12 @@ def not_right():
     coords8 = [norm_indent, norm_indent, 150 + norm_indent, 50 + norm_indent]
         
     choices = [
-
+            # (coords1, text1, next_action),
+            # (coords2, text2, next_action2),
+            # (coords3, text3, next_action3),
+            # (coords4, text4, next_action4),
+            # (coords5, text5, next_action5),
+            # (coords6, text6, next_action6),
             (coords7, text7, next_action7),
             (coords8, text8, next_action8)
     ]
@@ -5439,7 +5448,7 @@ def not_right():
     display_choice(dialogues, choices)
 
 def killer():
-    dialogues +=[
+    dialogues =[
         ("", ""),
         ("", "The killer is..."),
     ]
@@ -5481,9 +5490,9 @@ def killer():
 
     display_choice(dialogues, choices)
 
-def close():
+def close(): #you chose david, not cara
 
-    dialogues +=[
+    dialogues =[
         ("", ""),
         ("", "Well... it makes some sense, but there is something missing..."),
     ]
@@ -5526,7 +5535,7 @@ def close():
     display_choice(dialogues, choices)
 
 def end():
-    dialogues += [
+    dialogues = [
         ("", "The killer is Cara Montgomery."),
         ("", "Here's what happened."),
         ("", "She and David were having an argument about something incredibly touchy and scandolous if it ever got out, and they were eavesdropped on by Gwendolyn Beaumont, the victim."),
@@ -5564,7 +5573,12 @@ def not_right2():
     coords8 = [norm_indent, norm_indent, 150 + norm_indent, 50 + norm_indent]
         
     choices = [
-        
+            # (coords1, text1, next_action),
+            # (coords2, text2, next_action2),
+            # (coords3, text3, next_action3),
+            # (coords4, text4, next_action4),
+            # (coords5, text5, next_action5),
+            # (coords6, text6, next_action6),
             (coords7, text7, next_action7),
             (coords8, text8, next_action8)
     ]
@@ -5581,6 +5595,11 @@ def ending():
     # mainbox = box(mainx1, mainy1, mainx2, mainy2)
     font = 36
 
+    # maintext = canvas.create_text(mainx1 + mainx1/4, mainy1 + MAIN_INDENT/2, text = "THANK YOU FOR PLAYING:", font=("Bookman Old Style", 32, "bold"), width=840, anchor = "nw")
+    # maintext2 = canvas.create_text(mainx1 + mainx1/4, mainy1 + MAIN_INDENT + font, text = "ECHO: A VOICE UNHEARD", font=("Bookman Old Style", 32, "bold"), width=840, anchor = "nw")
+    # maintext3 = canvas.create_text(mainx1 + mainx1/4,  mainy1 + 2*MAIN_INDENT + 2*font, text = "By Siew Yue Ying for CIP2024", font=("Bookman Old Style", 32, "bold"), width=840, anchor = "nw")
+    # startbox = box(StartBoxX, StartBoxY, StartBoxX2, StartBoxY2)
+    # starttext = text((mainx2 - mainx1)/2.5 + mainx1 -17, (mainy2 - mainy1)/2 + 1.8*mainy1, "CLICK TO START", 20, 800)
     maintext = canvas.create_text(
         mainx1 + mainx1 / 4, 
         mainy1 + MAIN_INDENT / 2, 
@@ -5612,6 +5631,8 @@ def ending():
 def main():
 
     mainmenu()
+
+
     root.mainloop()
 
 if __name__ == '__main__':
